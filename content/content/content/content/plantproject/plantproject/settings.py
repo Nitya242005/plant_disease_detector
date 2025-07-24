@@ -1,16 +1,18 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-7_skpxigp@kzx91+@c%ms*o0^7=z=*c_z6!n2h3u^es6ip8-76'
 
-DEBUG = True
-ALLOWED_HOSTS = ['.ngrok-free.app']
+DEBUG = False
+
+ALLOWED_HOSTS = ['*']  # You can replace * with your Render URL after deployment
 
 CSRF_TRUSTED_ORIGINS = [
-   "https://*.ngrok-free.app",  # replace with your current ngrok domain
+    "https://*.ngrok-free.app",
+    "https://*.onrender.com",  # ✅ Add your actual Render domain if known
 ]
-
 
 INSTALLED_APPS = [
     'predictor',  # your app
@@ -37,7 +39,7 @@ ROOT_URLCONF = 'plantproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'predictor' / 'templates'],  # ✅ template folder
+        'DIRS': [BASE_DIR / 'predictor' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,18 +68,17 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-# ✅ Static files and directories
+# ✅ Static files (CSS, JS, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'predictor' / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Used by collectstatic during deployment
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# ✅ Media files (uploaded plant images)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
