@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-7_skpxigp@kzx91+@c%ms*o0^7=z=*c_z6!n2h3u^es6ip8-76'
 
-DEBUG = False
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ['*']  # You can replace * with your Render URL after deployment
 
@@ -34,7 +34,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'plantproject.urls'
+ROOT_URLCONF = 'plantproject.plantproject.urls'
 
 TEMPLATES = [
     {
@@ -51,7 +51,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'plantproject.wsgi.application'
+WSGI_APPLICATION = 'plantproject.plantproject.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -72,12 +72,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# ✅ Static files (CSS, JS, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'predictor' / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Used by collectstatic during deployment
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# ✅ Media files (uploaded plant images)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
