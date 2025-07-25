@@ -2,10 +2,9 @@ services:
   - type: web
     name: plant-disease-detector
     env: python
-    pythonVersion: 3.11         
+    pythonVersion: 3.11
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn plantproject.wsgi:application
+    startCommand: gunicorn plantproject.plantproject.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: plantproject.settings
-
+        value: plantproject.plantproject.settings
