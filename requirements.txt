@@ -9,5 +9,7 @@ tensorflow==2.13.0
 keras==2.13.1
 matplotlib==3.7.1
 pandas==1.5.3
+setuptools==68.2.2
+wheel==0.41.2
 
 
